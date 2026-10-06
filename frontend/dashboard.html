@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Dashboard</title><link rel="stylesheet" href="css/style.css"></head>
+<body>
+<header class="nav"><b>Privacy Risk Assessment</b><a href="index.html">Home</a><a href="assessment.html">Assessment</a><a href="dashboard.html">Dashboard</a></header>
+<main>
+ <h1>Cybersecurity Privacy Dashboard</h1>
+ <p class="notice" id="source">Loading...</p>
+ <p><a class="btn" href="assessment.html">Start Privacy Assessment</a></p>
+ <div class="grid g4">
+  <div class="card stat"><div class="l">Average risk score</div><div class="v" id="cScore"></div></div>
+  <div class="card stat"><div class="l">Most common level</div><div class="v" id="cLevel"></div></div>
+  <div class="card stat"><div class="l">High-risk categories (avg &gt; 50)</div><div class="v" id="cHigh"></div></div>
+  <div class="card stat"><div class="l">Recommendations in catalog</div><div class="v" id="cRecs"></div></div>
+  <div class="card stat"><div class="l">Security controls enabled</div><div class="v" id="cControls"></div></div>
+  <div class="card stat"><div class="l">Assessments submitted (live)</div><div class="v" id="cLive"></div></div>
+ </div>
+ <div class="grid g2">
+  <div class="card"><h2>1. Category risk scores (average)</h2><div class="chart-box"><canvas id="ch1"></canvas></div></div>
+  <div class="card"><h2>2. Privacy risk distribution</h2><div class="chart-box"><canvas id="ch2"></canvas></div></div>
+  <div class="card"><h2>3. Top privacy weaknesses (% of profiles)</h2><div class="chart-box"><canvas id="ch3"></canvas></div></div>
+  <div class="card"><h2>4. Account security controls (% enabled)</h2><div class="chart-box"><canvas id="ch4"></canvas></div></div>
+  <div class="card"><h2>5. Digital footprint risk distribution</h2><div class="chart-box"><canvas id="ch5"></canvas></div></div>
+  <div class="card"><h2>6. Privacy improvement comparison (avg score)</h2><div class="chart-box"><canvas id="ch6"></canvas></div></div>
+ </div>
+ <p class="small muted" id="disc"></p>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="js/common.js"></script><script src="js/dashboard.js"></script>
+</body></html>

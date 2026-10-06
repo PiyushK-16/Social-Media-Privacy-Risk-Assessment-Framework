@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Assessment</title><link rel="stylesheet" href="css/style.css"></head>
+<body>
+<header class="nav"><b>Privacy Risk Assessment</b><a href="index.html">Home</a><a href="assessment.html">Assessment</a><a href="dashboard.html">Dashboard</a></header>
+<main>
+ <section id="quiz">
+  <h1>Privacy Questionnaire</h1>
+  <p class="notice">Answer about your own account. Do not type personal details anywhere - this form only uses choices.</p>
+  <div class="progress"><span id="progressText">0 / 0 answered</span><div class="bar"><span id="progressBar"></span></div></div>
+  <div id="questions"></div>
+  <p><button class="btn" id="submitBtn" disabled>Generate my privacy score</button> <span id="formError" class="muted"></span></p>
+ </section>
+
+ <section id="results" class="hidden">
+  <h1>Your Privacy Assessment</h1>
+  <div class="grid g4">
+   <div class="card stat"><div class="l">Overall risk score</div><div class="v" id="rScore"></div><div class="small muted">0 = lower risk, 100 = higher risk</div></div>
+   <div class="card stat"><div class="l">Risk level</div><div class="v" id="rLevel"></div></div>
+   <div class="card stat"><div class="l">Security controls enabled</div><div class="v" id="rControls"></div></div>
+   <div class="card stat"><div class="l">Findings</div><div class="v" id="rFindings"></div></div>
+  </div>
+  <div class="grid g2">
+   <div class="card"><h2>Category risk (radar)</h2><div class="chart-box"><canvas id="radar"></canvas></div></div>
+   <div class="card"><h2>Category risk (bars)</h2><div class="chart-box"><canvas id="bars"></canvas></div></div>
+  </div>
+  <div class="card"><h2>Top findings</h2><div id="findingsList"></div></div>
+  <div class="card"><h2>Recommendations</h2><div id="recList"></div></div>
+  <div class="card"><h2>Improvement simulator - what if I improve my settings?</h2>
+   <p class="small muted">Tick the findings you would fix. This is a framework simulation, not a guarantee of safety.</p>
+   <div id="simChecks" class="checks"></div>
+   <p><button class="btn" id="simBtn">Simulate</button></p>
+   <div id="simOut"></div></div>
+  <div class="card"><h2>Report, checklist and data control</h2>
+   <p><a class="btn secondary" id="reportLink" target="_blank" rel="noopener">Open report</a>
+   <a class="btn secondary" id="reportDl">Download report (HTML)</a>
+   <a class="btn secondary" href="/api/privacy-checklist?format=txt">Download checklist</a>
+   <button class="btn secondary" id="delBtn">Delete my assessment</button></p>
+   <p class="small muted" id="assessId"></p><p class="small muted" id="disclaimer"></p></div>
+  <p><a class="btn secondary" href="assessment.html">Start over</a></p>
+ </section>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="js/common.js"></script><script src="js/assessment.js"></script>
+</body></html>

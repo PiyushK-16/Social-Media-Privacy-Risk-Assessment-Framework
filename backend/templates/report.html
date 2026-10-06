@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Privacy Assessment Report {{ a.assessment_id }}</title>
+<style>
+ body{font-family:Segoe UI,Arial,sans-serif;max-width:860px;margin:24px auto;padding:0 16px;color:#1b2430}
+ h1{margin-bottom:0} h2{border-bottom:2px solid #e3e8ef;padding-bottom:4px;margin-top:28px}
+ .meta{color:#5b6777;font-size:14px}
+ .score{display:flex;gap:16px;align-items:center;margin:16px 0}
+ .badge{font-size:42px;font-weight:700} .lvl{padding:6px 14px;border-radius:6px;color:#fff;font-weight:700}
+ .LOW{background:#2e9e5b}.MODERATE{background:#c9a400}.HIGH{background:#e07b00}.CRITICAL{background:#c62828}
+ table{border-collapse:collapse;width:100%} td,th{border-bottom:1px solid #e3e8ef;padding:6px;text-align:left;font-size:14px}
+ .bar{background:#e3e8ef;height:10px;border-radius:5px;width:160px}.bar>span{display:block;height:10px;border-radius:5px;background:#3b6fd4}
+ .tag{font-size:12px;font-weight:700;padding:2px 8px;border-radius:4px;background:#eef2f8}
+ .note{background:#f6f8fb;border-left:4px solid #3b6fd4;padding:10px 14px;font-size:13px;margin-top:24px}
+ button{margin:8px 0;padding:8px 14px} @media print{button{display:none}}
+</style>
+</head>
+<body>
+<h1>Social Media Privacy Risk Assessment Report</h1>
+<p class="meta">Assessment ID: <b>{{ a.assessment_id }}</b> &middot; Assessment date: {{ a.created_at }} (UTC)</p>
+<button onclick="window.print()">Print / Save as PDF</button>
+<div class="score"><span class="badge">{{ a.overall_score }}/100</span>
+  <span class="lvl {{ a.risk_level }}">{{ a.risk_level }}</span>
+  <span class="meta">Higher score = higher assessed exposure/risk</span></div>
+
+<h2>Category scores</h2>
+<table>{% for c in categories %}<tr><td>{{ c.label }}</td><td>{{ c.score }}/100</td>
+ <td><div class="bar"><span style="width:{{ c.score }}%"></span></div></td></tr>{% endfor %}</table>
+
+<h2>Top findings</h2>
+{% if a.findings %}<table><tr><th>Severity</th><th>Category</th><th>Finding</th></tr>
+{% for f in a.findings[:10] %}<tr><td><span class="tag">{{ f.severity }}</span></td><td>{{ f.category }}</td><td>{{ f.description }}</td></tr>{% endfor %}</table>
+{% else %}<p>No weaknesses detected from the self-reported answers.</p>{% endif %}
+
+<h2>Priority actions (IMMEDIATE)</h2>
+{% if priority_actions %}<ol>{% for r in priority_actions %}<li>{{ r.recommendation }}</li>{% endfor %}</ol>
+{% else %}<p>No immediate actions flagged.</p>{% endif %}
+
+<h2>Security recommendations</h2>
+<table><tr><th>Priority</th><th>Recommendation</th></tr>
+{% for r in recs %}<tr><td><span class="tag">{{ r.priority }}</span></td><td>{{ r.recommendation }}</td></tr>{% endfor %}</table>
+
+<h2>Privacy checklist</h2>
+<ul style="list-style:none;padding-left:0">{% for item in checklist %}<li>&#9744; {{ item }}</li>{% endfor %}</ul>
+
+<div class="note"><b>Disclaimer.</b> {{ disclaimer }} This report contains no personal data: only scores and
+finding categories derived from self-reported answers were stored.</div>
+</body></html>
